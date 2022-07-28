@@ -14,12 +14,14 @@ public class LoggingTrack implements ServletContextListener /* ,HttpSessionListe
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        System.out.println("Application cycle start here");
         /* This method is called when the servlet context is initialized(when the Web application is deployed). */
         sce.getServletContext().setAttribute("log", new LoggingGeneral());
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        System.out.println("Application cycle end here");
         /* This method is called when the servlet Context is undeployed or Application Server shuts down. */
         sce.getServletContext().removeAttribute("log");
     }

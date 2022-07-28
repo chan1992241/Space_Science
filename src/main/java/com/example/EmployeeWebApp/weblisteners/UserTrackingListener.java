@@ -30,6 +30,7 @@ public class UserTrackingListener implements ServletContextListener, HttpSession
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
+        System.out.println("Session cycle start here");
         users++;
         userId++;
         /* Session is created. */
@@ -37,6 +38,7 @@ public class UserTrackingListener implements ServletContextListener, HttpSession
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
+        System.out.println("Session cycle end here");
         users--;
         /* Session is destroyed. */
     }
