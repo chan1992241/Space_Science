@@ -14,7 +14,11 @@
 <h1>Location</h1>
 <h2>Choose appropriate Location</h2>
 <br><br>
-<a href="PriorKnowledge.jsp?location=Klang Valley">Klang Valley Area</a>
-<a href="PriorKnowledge.jsp?location=Non Klang Valley">Non Klang Valley Area</a>
+<%--<a href="PriorKnowledge.jsp?location=Klang Valley">Klang Valley Area</a>--%>
+<%--<a href="PriorKnowledge.jsp?location=Non Klang Valley">Non Klang Valley Area</a>--%>
+<form action="PriorKnowledge.jsp">
+    Location <input type="text" name="location" value="" />
+    <input type="submit" value="Next" />
+</form>
 </body>
 </html>
