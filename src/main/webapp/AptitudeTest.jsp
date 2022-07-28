@@ -85,6 +85,18 @@
 </head>
 <body>
 <h2>Aptitude - Popup Form</h2>
+<%
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        Cookie cookie;
+        for (int i = 0; i < cookies.length; i++) {
+            cookie = cookies[i];
+            if (cookie.getName().equals("UserID")) {
+                out.println("Your User ID is" + "\n" + cookie.getValue());
+            }
+        }
+    }
+%>
 <p>Click on the button at the bottom of this page to open the
     Aptitude Test form.</p>
 <button class="open-button" onclick="openForm()">Open Form</button>

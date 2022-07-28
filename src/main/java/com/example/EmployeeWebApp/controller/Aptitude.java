@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import static com.example.EmployeeWebApp.utilities.AptitudeChecker.calculateScore;
+import static java.lang.System.out;
 
 @WebServlet(name = "Aptitude", value = "/Aptitude", urlPatterns = {"/Aptitude", "/apt"})
 public class Aptitude extends HttpServlet {
@@ -26,10 +27,10 @@ public class Aptitude extends HttpServlet {
 //        PrintWriter out = response.getWriter();
         if (anw1.equals("empty") || anw2.equals("empty") || anw3.equals("empty") || anw4.equals("empty") ||
                 anw5.equals("empty")) {
-//            out.println("<SCRIPT type=\"text/javascript\">");
-//            out.println("alert(\"Incomplete input you will be redirected to index.html\")");
-//            out.println("window.location.assign(\"index.html\")");
-//            out.println("</SCRIPT>");
+            out.println("<SCRIPT type=\"text/javascript\">");
+            out.println("alert(\"Incomplete input you will be redirected to index.html\")");
+            out.println("window.location.assign(\"index.html\")");
+            out.println("</SCRIPT>");
         } else {
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
@@ -49,10 +50,16 @@ public class Aptitude extends HttpServlet {
 //            if (anw5.equals("48"))
 //            { totalcorrectansw = totalcorrectansw + 1; }
             String results[] = {anw1,anw2,anw3,anw4,anw5};
+//            totalcorrectansw = AptitudeChecker.calculateScore(results);
+//            request.setAttribute("RESULTS", results);
+//            request.setAttribute("FINALRES", totalcorrectansw);
+//            RequestDispatcher req = request.getRequestDispatcher("display.jsp");
+//            req.forward(request, response);
             totalcorrectansw = AptitudeChecker.calculateScore(results);
-            request.setAttribute("RESULTS", results);
-            request.setAttribute("FINALRES", totalcorrectansw);
-            RequestDispatcher req = request.getRequestDispatcher("display.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("RESULTS", results);
+            session.setAttribute("FINALRES", totalcorrectansw);
+            RequestDispatcher req = request.getRequestDispatcher("Location.jsp");
             req.forward(request, response);
 //            out.println("<div style= \"margin-left: 400px;margin-top: 200px; background-color: #ffcccc; width:30%\">");
 //            out.println("Your answer:");
@@ -91,6 +98,7 @@ public class Aptitude extends HttpServlet {
 //            out.println("</body>");
 //            out.println("</html>");
         }
+
     }
 
     @Override

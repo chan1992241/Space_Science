@@ -19,8 +19,10 @@
                 out.println("alert(\"For better performance please use Firefox browser\")");
                 out.println("</SCRIPT>");
             }
-            String s[] = (String[]) request.getAttribute("RESULTS");
-            int totalcorrectansw = (Integer) request.getAttribute("FINALRES");
+            String s[] = (String[]) session.getAttribute("RESULTS");
+            int totalcorrectansw = (Integer) session.getAttribute("FINALRES");
+            String location = request.getParameter("location");
+            String knowledge = request.getParameter("knowledge");
             //Write some codes here..... Copy the codes from Aptitude servlet and paste it
             out.println("Your answer:");
             out.println("<br>Answer 1: " + s[0]);
@@ -37,6 +39,12 @@
                 out.println("<br><br>Your score is " + " " + totalcorrectansw + " " + "over 5");
                 out.println("<br>You have failed the test");
             }
+            out.println("<br>Your location is " + location);
+            out.println("<br>Your prior knowledge is " + knowledge);
         %>
+    <br><br>
+    <a href="index.jsp">Main Page</a>
+    <a href="downloadoption.jsp">Download Option Page</a>
+</div>
 </body>
 </html>

@@ -7,11 +7,16 @@ import javax.servlet.annotation.*;
 @WebListener
 public class UserTrackingListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
     private static int users = 0;
+    private static int userId = 1000;
+
     public UserTrackingListener() {
     }
     public static int getActiveSessions() {
         //Write codes here….
         return users;
+    }
+    public static int getUserId() {
+        return userId;
     }
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -26,6 +31,7 @@ public class UserTrackingListener implements ServletContextListener, HttpSession
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         users++;
+        userId++;
         /* Session is created. */
     }
 
