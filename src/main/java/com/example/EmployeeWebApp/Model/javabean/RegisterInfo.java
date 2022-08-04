@@ -1,8 +1,12 @@
 package com.example.EmployeeWebApp.Model.javabean;
 
+import javax.validation.constraints.NotNull;
+
 public class RegisterInfo {
     private String fname;
+    @NotNull
     private String lname;
+    @NotNull
     private String address;
     private String gender;
     private String[] qualification;
