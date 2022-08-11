@@ -9,6 +9,8 @@ public class ValidateManageLogic {
         }
         else if (request.getParameter("DELETE") != null && request.getParameter("DELETE").equals("DELETE")) {
             return "DELETE";
+        } else if (request.getParameter("AJAX") != null && request.getParameter("AJAX").equals("AJAX")) {
+            return "AJAX";
         }
         return "ADD";
     }

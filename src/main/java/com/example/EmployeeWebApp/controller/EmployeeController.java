@@ -5,6 +5,7 @@ import com.example.EmployeeWebApp.Model.managedbean.EmployeeService;
 import com.example.EmployeeWebApp.Model.sessionbean.EmployeeSessionBeanLocal;
 import com.example.EmployeeWebApp.utilities.LoggingGeneral;
 import com.example.EmployeeWebApp.utilities.ValidateManageLogic;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/EmployeeController")
 public class EmployeeController extends HttpServlet {
@@ -41,6 +43,7 @@ public class EmployeeController extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        boolean flag = false;
         String eid = request.getParameter("id");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
@@ -57,19 +60,35 @@ public class EmployeeController extends HttpServlet {
             if (ValidateManageLogic.validateManager(request).equals("UPDATE")) {
 // call session bean updateEmployee method
                 empbean.updateEmployee(s);
+                flag = true;
+            }else if (ValidateManageLogic.validateManager(request).equals("AJAX")) {
+                List<Employee> h = empbean.searchEmployeeAjax(eid);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                String result = null;
+                if (h != null) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    mapper.writeValue(out, h);
+                } else {
+                    out.println(result);
+                }
             }
             else if (ValidateManageLogic.validateManager(request).equals("DELETE")) {
 // call session bean deleteEmployee method
                 empbean.deleteEmployee(eid);
+                flag = true;
 // if ADD button is clicked
             } else {
 // call session bean addEmployee method
                 empbean.addEmployee(s);
+                flag = true;
             }
 // this line is to redirect to notify record has been updated and redirect to
 // another page
             logger.setExitPoints(request);
-            ValidateManageLogic.navigateJS(out);
+            if(flag) {
+                ValidateManageLogic.navigateJS(out);
+            }
         } catch (EJBException ex) {
         }
     }}

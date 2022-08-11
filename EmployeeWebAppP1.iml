@@ -69,5 +69,6 @@
     <orderEntry type="library" name="@types/jquery" level="application" />
     <orderEntry type="library" name="log4j-api-2.14.1" level="project" />
     <orderEntry type="library" name="log4j-core-2.14.1" level="project" />
+    <orderEntry type="library" name="jackson-all-1.9.0" level="project" />
   </component>
 </module>

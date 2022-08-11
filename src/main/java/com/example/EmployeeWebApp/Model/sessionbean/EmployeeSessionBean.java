@@ -101,4 +101,20 @@ public class EmployeeSessionBean implements EmployeeSessionBeanLocal {
         e.setHireDate(HD);
         em.persist(e);
     }
+
+    public List<Employee> searchEmployeeAjax(String id) throws EJBException {
+        Query q = em.createNamedQuery("Employee.findbyId");
+        try {
+            Long d = Long.valueOf(id);
+        } catch (NumberFormatException nfe) {
+            return null;
+        }
+        q.setParameter("id", Long.valueOf(id));
+        List<Employee> h = q.getResultList();
+        if (h.isEmpty()) {
+            return null;
+        } else {
+            return h;
+        }
+    }
 }
