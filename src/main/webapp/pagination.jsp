@@ -103,7 +103,7 @@
                 type="submit">Sorting</button>
             <input type="hidden" name="currentPage" value="<%=currentPage%>" />
             <input type="hidden" name="recordsPerPage" value="<%=recordsPerPage%>" />
-            <input type="hidden" name="keyword" value="<%=direction%>" />
+            <input type="hidden" name="keyword" value="<%=keyword%>" />
     </form>
     <form class="form-inline md-form mr-auto mb-4"
           action="PaginationServlet" method="get">
@@ -113,6 +113,7 @@
                 type="submit">Search</button>
         <input type="hidden" name="currentPage" value="<%=currentPage%>" />
         <input type="hidden" name="recordsPerPage" value="<%=recordsPerPage%>" />
+        <input type="hidden" name="direction" value="<%=direction%>" />
     </form>
         <div class="row col-md-6">
             <table class="table table-striped table-bordered table-sm">
