@@ -1,6 +1,7 @@
 package com.example.EmployeeWebApp.controller;
 
 import com.example.EmployeeWebApp.Model.entity.Employee;
+import com.example.EmployeeWebApp.Model.javabean.EmployeeJson;
 import com.example.EmployeeWebApp.Model.managedbean.EmployeeService;
 import com.example.EmployeeWebApp.Model.sessionbean.EmployeeSessionBeanLocal;
 import com.example.EmployeeWebApp.utilities.LoggingGeneral;
@@ -10,6 +11,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,12 +67,24 @@ public class EmployeeController extends HttpServlet {
                 flag = true;
             }else if (ValidateManageLogic.validateManager(request).equals("AJAX")) {
                 List<Employee> h = empbean.searchEmployeeAjax(eid);
+                JsonbConfig config = new JsonbConfig().withFormatting(Boolean.TRUE);
+                Jsonb jsonb = JsonbBuilder.create(config);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
                 String result = null;
                 if (h != null) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    mapper.writeValue(out, h);
+//                    ObjectMapper mapper = new ObjectMapper();
+//                    mapper.writeValue(out, h);
+                    Employee e = h.get(0);
+                    EmployeeJson js = new EmployeeJson();
+                    js.setId(e.getId().toString());
+                    js.setHireDate(e.getHireDate().toString());
+                    js.setBirthDate(e.getBirthDate().toString());
+                    js.setFirstName(e.getFirstName());
+                    js.setLastName(e.getLastName());
+                    js.setGender(e.getGender());
+                    String output = jsonb.toJson(js);
+                    out.println(output);
                 } else {
                     out.println(result);
                 }

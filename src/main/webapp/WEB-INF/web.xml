@@ -11,4 +11,8 @@
         <param-name>Phone</param-name>
         <param-value>603-4555555</param-value>
     </context-param>
+    <context-param>
+        <param-name>resteasy.preferJacksonOverJsonB</param-name>
+        <param-value>true</param-value>
+    </context-param>
 </web-app>
