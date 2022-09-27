@@ -64,6 +64,9 @@
                 <li>
                     <a href="adminpage.html">Admin Login</a>
                 </li>
+                <li>
+                    <form action="CallableExecutorServlet"><input type="submit" value="Adv EE">Go to EE<input></form>
+                </li>
                 <li><a href='#' onclick='javascript:window.open("downloadoption.jsp", "_blank", "scrollbars=1,resizable=1,height=300,width=450");' title='Pop Up'>Download School Calendar</a></li>
             </ul>
         </div>

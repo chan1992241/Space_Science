@@ -7,6 +7,7 @@ import java.util.Date;
 @Table(name = "employee", schema = "employees")
 @NamedQuery(name = "Employee.findbyId", query = "SELECT e FROM Employee e WHERE e.id = :id")
 @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")
+@NamedQuery(name = "Employee.findbyFNameLName", query = "SELECT e FROM Employee e WHERE e.firstName = :firstName AND e.lastName = :lastName")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,5 +76,14 @@ public class Employee {
     public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
-
+    public String toJSON() {
+        return "Employee{" +
+                "id=" + id +
+                ", birthDate=" + this.birthDate.toString() +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", hireDate=" + hireDate.toString() +
+                '}';
+    }
 }

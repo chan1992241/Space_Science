@@ -16,4 +16,6 @@ public interface EmployeeSessionBeanLocal {
     public void deleteEmployee(String id) throws EJBException;
     public void addEmployee(String[] s) throws EJBException;
     public List<Employee> searchEmployeeAjax(String empid) throws EJBException;
+    public List<Employee> getEmployee(String id);
+    public List<Employee> getEmployeeByName(String firstName, String lastName );
 }

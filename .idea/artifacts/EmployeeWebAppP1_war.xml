@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" build-on-make="true" name="EmployeeWebAppP1:war">
-    <output-path>$PROJECT_DIR$/out</output-path>
+    <output-path>$PROJECT_DIR$/target</output-path>
     <properties id="maven-jee-properties">
       <options>
         <module>EmployeeWebAppP1</module>
